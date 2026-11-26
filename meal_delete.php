@@ -6,7 +6,7 @@ require __DIR__ . '/db.php';
 $pageTitle = '記録の削除';
 $id = isset($_REQUEST['id']) ? (int)$_REQUEST['id'] : 0;
 
-$stmt = db()->prepare("SELECT * FROM meals WHERE id = ?");
+$stmt = db()->prepare("SELECT * FROM 11meals WHERE id = ?");
 $stmt->execute(array($id));
 $meal = $stmt->fetch();
 
@@ -14,9 +14,9 @@ if ($meal && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $date = $meal['meal_date'];
     $pdo = db();
     $pdo->beginTransaction();
-    $delItems = $pdo->prepare("DELETE FROM meal_items WHERE meal_id = ?");
+    $delItems = $pdo->prepare("DELETE FROM 11meal_items WHERE meal_id = ?");
     $delItems->execute(array($id));
-    $delMeal = $pdo->prepare("DELETE FROM meals WHERE id = ?");
+    $delMeal = $pdo->prepare("DELETE FROM 11meals WHERE id = ?");
     $delMeal->execute(array($id));
     $pdo->commit();
     header('Location: history.php?date=' . urlencode($date) . '&msg=' . urlencode('削除しました'));
@@ -25,7 +25,7 @@ if ($meal && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $items = array();
 if ($meal) {
-    $itemStmt = db()->prepare("SELECT * FROM meal_items WHERE meal_id = ? ORDER BY id");
+    $itemStmt = db()->prepare("SELECT * FROM 11meal_items WHERE meal_id = ? ORDER BY id");
     $itemStmt->execute(array($id));
     $items = $itemStmt->fetchAll();
 }

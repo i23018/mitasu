@@ -26,7 +26,7 @@ if ($key !== '' && array_key_exists($key, $NUTRIENTS)) {
 // その栄養素を多く含む食材を、含有量の多い順に5件取得する
 // （$key は $NUTRIENTS のキーであることを確認済みなので、列名として使ってよい）
 $stmt = db()->query(
-    "SELECT * FROM foods WHERE {$key} > 0 ORDER BY {$key} DESC LIMIT 5"
+    "SELECT * FROM 11foods WHERE {$key} > 0 ORDER BY {$key} DESC LIMIT 5"
 );
 $foods = $stmt->fetchAll();
 

@@ -15,3 +15,6 @@
   <div class="app-subtitle">栄養管理アプリ</div>
 </header>
 <main class="container">
+<?php if (basename($_SERVER['SCRIPT_NAME'] ?? '') !== 'index.php'): ?>
+  <p class="home-back-wrap"><a class="btn sub home-back" href="index.php">← ホームへ戻る</a></p>
+<?php endif; ?>

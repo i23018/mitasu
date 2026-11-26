@@ -66,7 +66,7 @@ function targets($activity) {
 
 // プロフィール（1件）を取得する。未登録なら既定値を返す。
 function getProfile() {
-    $row = db()->query("SELECT * FROM profile WHERE id = 1")->fetch();
+    $row = db()->query("SELECT * FROM 11profile WHERE id = 1")->fetch();
     if (!$row) {
         return array(
             'age_group' => '20代', 'allergy' => 'なし', 'activity' => 'ふつう',
@@ -84,7 +84,7 @@ function dayTotals($date) {
         $cols[] = "SUM(mi.{$k} * mi.quantity) AS {$k}";
     }
     $sql = "SELECT " . implode(', ', $cols)
-         . " FROM meals m JOIN meal_items mi ON mi.meal_id = m.id"
+         . " FROM 11meals m JOIN 11meal_items mi ON mi.meal_id = m.id"
          . " WHERE m.meal_date = ?";
     $stmt = db()->prepare($sql);
     $stmt->execute(array($date));
@@ -99,7 +99,7 @@ function dayTotals($date) {
 // 食品データベースの全件を、画面（JavaScript）で使う形に変換して返す
 function foodsForJs() {
     global $NUTRIENTS;
-    $foods = db()->query("SELECT * FROM foods ORDER BY id")->fetchAll();
+    $foods = db()->query("SELECT * FROM 11foods ORDER BY id")->fetchAll();
     $out = array();
     foreach ($foods as $f) {
         $nut = array();
@@ -112,7 +112,7 @@ function foodsForJs() {
     return $out;
 }
 
-// 食事記録の明細（食品）を meal_items テーブルへ登録する。
+// 食事記録の明細（食品）を 11meal_items テーブルへ登録する。
 // 食品データベースにある食品は、サーバー側で栄養素の値を取り直して保存する
 // （画面から送られた値をそのまま信用しないため）。手入力の食品は栄養素を0とする。
 function insertMealItems($mealId, $items) {
@@ -121,10 +121,10 @@ function insertMealItems($mealId, $items) {
     $cols = implode(', ', $keys);
     $marks = implode(', ', array_fill(0, count($keys), '?'));
     $ins = db()->prepare(
-        "INSERT INTO meal_items (meal_id, food_id, food_name, quantity, {$cols})
+        "INSERT INTO 11meal_items (meal_id, food_id, food_name, quantity, {$cols})
          VALUES (?, ?, ?, ?, {$marks})"
     );
-    $foodStmt = db()->prepare("SELECT * FROM foods WHERE id = ?");
+    $foodStmt = db()->prepare("SELECT * FROM 11foods WHERE id = ?");
     foreach ($items as $it) {
         $nut = array();
         foreach ($keys as $k) { $nut[$k] = 0; }

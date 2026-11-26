@@ -5,7 +5,7 @@
 -- ============================================================
 
 -- プロフィール（利用者は1人なので id=1 の1件だけを使う）
-CREATE TABLE IF NOT EXISTS profile (
+CREATE TABLE IF NOT EXISTS 11profile (
   id INT PRIMARY KEY,
   age_group VARCHAR(10),
   allergy VARCHAR(100),
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS profile (
 );
 
 -- 食品データベース（1食分あたりの栄養素の概算値）
-CREATE TABLE IF NOT EXISTS foods (
+CREATE TABLE IF NOT EXISTS 11foods (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   unit VARCHAR(20),
@@ -32,14 +32,14 @@ CREATE TABLE IF NOT EXISTS foods (
 );
 
 -- 食事記録（1回の食事）
-CREATE TABLE IF NOT EXISTS meals (
+CREATE TABLE IF NOT EXISTS 11meals (
   id INT AUTO_INCREMENT PRIMARY KEY,
   meal_date DATE NOT NULL,
   meal_type VARCHAR(10) NOT NULL
 );
 
 -- 食事記録の明細（食事に含まれる食品。栄養素は登録時点の値をコピーして持つ）
-CREATE TABLE IF NOT EXISTS meal_items (
+CREATE TABLE IF NOT EXISTS 11meal_items (
   id INT AUTO_INCREMENT PRIMARY KEY,
   meal_id INT NOT NULL,
   food_id INT,
@@ -55,15 +55,15 @@ CREATE TABLE IF NOT EXISTS meal_items (
   vit_a DECIMAL(8,1),
   vit_c DECIMAL(6,1),
   vit_d DECIMAL(6,1),
-  FOREIGN KEY (meal_id) REFERENCES meals(id) ON DELETE CASCADE
+  FOREIGN KEY (meal_id) REFERENCES 11meals(id) ON DELETE CASCADE
 );
 
 -- プロフィールの初期値
-INSERT INTO profile (id, age_group, allergy, activity, height, weight)
+INSERT INTO 11profile (id, age_group, allergy, activity, height, weight)
 VALUES (1, '20代', 'なし', 'ふつう', NULL, NULL);
 
 -- 食品データ（25品目）
-INSERT INTO foods (name, unit, energy, protein, fat, carbs, fiber, calcium, iron, vit_a, vit_c, vit_d) VALUES
+INSERT INTO 11foods (name, unit, energy, protein, fat, carbs, fiber, calcium, iron, vit_a, vit_c, vit_d) VALUES
 ('ごはん', '1杯（150g）', 234, 3.8, 0.5, 55.7, 0.5, 5, 0.2, 0, 0, 0),
 ('食パン', '1枚（60g）', 149, 5.6, 2.6, 26.6, 1.3, 17, 0.3, 0, 0, 0),
 ('うどん', '1玉（250g）', 263, 6.5, 1.0, 54.0, 2.0, 15, 0.5, 0, 0, 0),
@@ -91,14 +91,14 @@ INSERT INTO foods (name, unit, energy, protein, fat, carbs, fiber, calcium, iron
 ('牡蠣', '5個（100g）', 60, 6.6, 1.4, 4.7, 0, 88, 1.9, 13, 3, 0);
 
 -- サンプル記録（今日の日付で入ります。不要ならこのブロックを消してから実行）
-INSERT INTO meals (meal_date, meal_type) VALUES (CURDATE(), '朝食');
+INSERT INTO 11meals (meal_date, meal_type) VALUES (CURDATE(), '朝食');
 SET @m1 = LAST_INSERT_ID();
-INSERT INTO meal_items (meal_id, food_id, food_name, quantity, energy, protein, fat, carbs, fiber, calcium, iron, vit_a, vit_c, vit_d)
+INSERT INTO 11meal_items (meal_id, food_id, food_name, quantity, energy, protein, fat, carbs, fiber, calcium, iron, vit_a, vit_c, vit_d)
 SELECT @m1, id, name, 1, energy, protein, fat, carbs, fiber, calcium, iron, vit_a, vit_c, vit_d
-FROM foods WHERE name IN ('ごはん', '味噌汁', '卵');
+FROM 11foods WHERE name IN ('ごはん', '味噌汁', '卵');
 
-INSERT INTO meals (meal_date, meal_type) VALUES (CURDATE(), '昼食');
+INSERT INTO 11meals (meal_date, meal_type) VALUES (CURDATE(), '昼食');
 SET @m2 = LAST_INSERT_ID();
-INSERT INTO meal_items (meal_id, food_id, food_name, quantity, energy, protein, fat, carbs, fiber, calcium, iron, vit_a, vit_c, vit_d)
+INSERT INTO 11meal_items (meal_id, food_id, food_name, quantity, energy, protein, fat, carbs, fiber, calcium, iron, vit_a, vit_c, vit_d)
 SELECT @m2, id, name, 1, energy, protein, fat, carbs, fiber, calcium, iron, vit_a, vit_c, vit_d
-FROM foods WHERE name IN ('鶏の唐揚げ', 'ごはん', 'サラダ');
+FROM 11foods WHERE name IN ('鶏の唐揚げ', 'ごはん', 'サラダ');

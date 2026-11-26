@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['items_json'])) {
         && count($items) > 0) {
         $pdo = db();
         $pdo->beginTransaction();
-        $stmt = $pdo->prepare("INSERT INTO meals (meal_date, meal_type) VALUES (?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO 11meals (meal_date, meal_type) VALUES (?, ?)");
         $stmt->execute(array($date, $mealType));
         $mealId = (int)$pdo->lastInsertId();
         insertMealItems($mealId, $items);

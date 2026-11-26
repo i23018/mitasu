@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $weight = (isset($_POST['weight']) && is_numeric($_POST['weight'])) ? (float)$_POST['weight'] : null;
 
     $stmt = db()->prepare(
-        "REPLACE INTO profile (id, age_group, allergy, activity, height, weight)
+        "REPLACE INTO 11profile (id, age_group, allergy, activity, height, weight)
          VALUES (1, ?, ?, ?, ?, ?)"
     );
     $stmt->execute(array($ageGroup, $allergy, $activity, $height, $weight));

@@ -14,13 +14,13 @@ $next = date('Y-m-d', strtotime($date . ' +1 day'));
 
 // その日の記録を取得（朝食→昼食→夕食→間食・夜食の順）
 $stmt = db()->prepare(
-    "SELECT * FROM meals WHERE meal_date = ?
+    "SELECT * FROM 11meals WHERE meal_date = ?
      ORDER BY FIELD(meal_type, '朝食', '昼食', '夕食', '間食・夜食'), id"
 );
 $stmt->execute(array($date));
 $meals = $stmt->fetchAll();
 
-$itemStmt = db()->prepare("SELECT * FROM meal_items WHERE meal_id = ? ORDER BY id");
+$itemStmt = db()->prepare("SELECT * FROM 11meal_items WHERE meal_id = ? ORDER BY id");
 
 // その日の合計と達成率
 $profile = getProfile();

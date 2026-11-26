@@ -6,7 +6,7 @@ require __DIR__ . '/db.php';
 $pageTitle = '記録の変更';
 $id = isset($_REQUEST['id']) ? (int)$_REQUEST['id'] : 0;
 
-$stmt = db()->prepare("SELECT * FROM meals WHERE id = ?");
+$stmt = db()->prepare("SELECT * FROM 11meals WHERE id = ?");
 $stmt->execute(array($id));
 $meal = $stmt->fetch();
 
@@ -20,9 +20,9 @@ if ($meal && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['items_json']
     if (is_array($items) && count($items) > 0) {
         $pdo = db();
         $pdo->beginTransaction();
-        $upd = $pdo->prepare("UPDATE meals SET meal_date = ?, meal_type = ? WHERE id = ?");
+        $upd = $pdo->prepare("UPDATE 11meals SET meal_date = ?, meal_type = ? WHERE id = ?");
         $upd->execute(array($date, $mealType, $id));
-        $del = $pdo->prepare("DELETE FROM meal_items WHERE meal_id = ?");
+        $del = $pdo->prepare("DELETE FROM 11meal_items WHERE meal_id = ?");
         $del->execute(array($id));
         insertMealItems($id, $items);
         $pdo->commit();
@@ -38,7 +38,7 @@ $unitMap = array();
 foreach ($foodsForJs as $f) { $unitMap[$f['food_id']] = $f['unit']; }
 
 if ($meal) {
-    $itemStmt = db()->prepare("SELECT * FROM meal_items WHERE meal_id = ? ORDER BY id");
+    $itemStmt = db()->prepare("SELECT * FROM 11meal_items WHERE meal_id = ? ORDER BY id");
     $itemStmt->execute(array($id));
     foreach ($itemStmt->fetchAll() as $it) {
         $nut = array();
