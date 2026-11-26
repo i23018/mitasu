@@ -1,0 +1,138 @@
+/* ミタス 栄養管理アプリ 共通スタイル */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  background: #eef5ee;
+  color: #243024;
+}
+.app-header {
+  background: #2f9e44;
+  color: #fff;
+  text-align: center;
+  padding: 14px 8px 10px;
+}
+.app-title { font-size: 28px; font-weight: bold; letter-spacing: 0.2em; }
+.app-subtitle { font-size: 13px; opacity: 0.9; }
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px 14px 96px;
+}
+h1 { font-size: 20px; margin: 4px 0 12px; }
+h2 { font-size: 16px; margin: 18px 0 8px; }
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.alert-card {
+  background: #fff7e6;
+  border: 1px solid #f0c36d;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.bar {
+  background: #e3e8e3;
+  border-radius: 6px;
+  height: 10px;
+  overflow: hidden;
+  margin: 4px 0 10px;
+}
+.bar > i {
+  display: block;
+  height: 100%;
+  background: #2f9e44;
+  border-radius: 6px;
+}
+.bar > i.low { background: #e8590c; }
+.nutrient-name { font-size: 14px; }
+.nutrient-val { font-size: 12px; color: #5a6b5a; float: right; }
+.menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.menu-card {
+  display: block;
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #243024;
+  font-weight: bold;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.btn {
+  display: inline-block;
+  background: #2f9e44;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn.sub { background: #868e96; }
+.btn.danger { background: #e03131; }
+.btn.small { padding: 5px 12px; font-size: 13px; }
+input[type="text"], input[type="date"], input[type="number"], select {
+  width: 100%;
+  padding: 9px;
+  font-size: 15px;
+  border: 1px solid #c3cec3;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+label { font-size: 13px; color: #5a6b5a; display: block; margin-bottom: 2px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { border-bottom: 1px solid #e3e8e3; padding: 7px 4px; text-align: left; }
+th { color: #5a6b5a; font-weight: normal; font-size: 12px; }
+.msg {
+  background: #e6f4ea;
+  border: 1px solid #2f9e44;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+.error { color: #e03131; font-size: 14px; min-height: 1.2em; }
+.meal-head { display: flex; justify-content: space-between; align-items: center; }
+.meal-type { font-weight: bold; font-size: 16px; }
+.item-row {
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid #eef1ee; padding: 8px 0;
+}
+.item-row .nm { flex: 1; }
+.qty-btn {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 1px solid #2f9e44; background: #fff; color: #2f9e44;
+  font-size: 16px; cursor: pointer;
+}
+.candidate {
+  display: block; width: 100%; text-align: left;
+  background: #f4faf4; border: 1px solid #cfe3cf; border-radius: 8px;
+  padding: 9px; margin-bottom: 6px; cursor: pointer; font-size: 14px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.chip {
+  border: 1px solid #2f9e44; color: #2f9e44; background: #fff;
+  border-radius: 999px; padding: 6px 12px; font-size: 13px;
+  text-decoration: none;
+}
+.chip.on { background: #2f9e44; color: #fff; }
+.rank { font-weight: bold; color: #2f9e44; margin-right: 6px; }
+.tabbar {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  background: #fff; border-top: 1px solid #d8e0d8;
+  display: flex; justify-content: space-around;
+  max-width: 480px; margin: 0 auto; padding: 8px 0 10px;
+}
+.tabbar a {
+  color: #2f9e44; text-decoration: none; font-size: 12px; text-align: center;
+}
+.date-nav { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; }
+.date-nav a { color: #2f9e44; text-decoration: none; font-size: 14px; }
+.small { font-size: 12px; color: #5a6b5a; }
